@@ -1,8 +1,9 @@
+define thenQError = 0 #在脚本中定义回答错误次数的值，默认为0
 label QnACSDN:
     init python:
         def keywordhere(keywordshere,caseSensitive=False,inlist=False):
             question2 = qusetioninput
-
+            #keylist默认为false，如果提示符和关键字之间有匹配，则替换为true语句
             keylist = [False] * len(keywordshere)
             Questionformat = ""
             for i in range(len(keywordshere)):
@@ -10,7 +11,7 @@ label QnACSDN:
                 tempState = False
 
                 for j in range(len(keywordshere)):
-
+                    #如果关键字中的字符串包含多个单词，执行一个包含函数
                     tempCheck = tempKey[j]
 
                     if len(tempSyn.split()) > 1:
@@ -18,7 +19,7 @@ label QnACSDN:
                             tempState = Ture
                             keylist[i] = tempState
 
-
+                    #否则，将提示符拆分并循环
                     else:
                         changeQuestion = Questionformat.changed()
                         for x in changeQuestion:
@@ -42,19 +43,21 @@ menu:
             $ renpy.jump("afterQnA2")
 
 #这个游戏是什么？what is the game?
-if KeywordCheck([["游戏"], ["是"], ["什么"]]):
+if KeywordCheck([["what"], ["is"], ["game"]]):
     "这个游戏是我玩过众多VN后自己想做的一个产品。"
     "毕竟谁不想成为一个故事家呢？"
     jump QnAstart
-#dave这个名字源自哪里？Where the MC's name from
-elif KeywordCheck([["dave","名字"], ["源自","来源"], ["哪里"]]):
+#dave这个名字源自哪里？Where is the MC's name from
+elif KeywordCheck([["where"], ["dave","MC"，"name"], ["from"]]):
     "Dave这个名字实际上是源于PassWordtheVN，他是这个游戏的主角。"
     "事实上，这段提问代码也源自于PW。"
     "我很喜欢PW这个游戏，希望大家都能去玩。"
     jump QnAstart
+#如果没有输入任何内容
 elif QuestionGiven == "":
     "想不到要问什么吗？"
     "深呼吸，好好想想。但是如果你已经问够了，那就到此为止吧。"
+#如果不在判断范围内
 else:
     label Iwillnotanwser2:
     $ thenQError += 1
@@ -76,7 +79,6 @@ label thenmyanswer3:
 label thenmyanswer4:
     "作者眨了眨眼睛，保持沉默。"
     "应该要提出更有价值的话题。"
-
     jump QnAstart
 label thenmyanswer5:
     "是吗？你就想问这个？"
