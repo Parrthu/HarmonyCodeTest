@@ -34,12 +34,11 @@ label QnACSDN:
 label QnAstart:
 menu:
         "提问":
-            $ questioninput  = renpy.input("What should I ask him?")
+            $ questioninput  = renpy.input("我应该问些什么呢？")
             $ questioninput  = questioninput.strip("")
-        "Stay Silent.":
-            "I frowned, thinking."
-            "Done already?"
-            "I think so, yeah..."
+        "沉默":
+            "我皱眉，努力思索。"
+            "或许就到此为止了。"
             $ renpy.jump("afterQnA2")
 
 #这个游戏是什么？what is the game?
@@ -48,7 +47,7 @@ if KeywordCheck([["what"], ["is"], ["game"]]):
     "毕竟谁不想成为一个故事家呢？"
     jump QnAstart
 #dave这个名字源自哪里？Where is the MC's name from
-elif KeywordCheck([["where"], ["dave","MC"，"name"], ["from"]]):
+elif KeywordCheck([["where"], ["dave","mc"，"name"], ["from"]]):
     "Dave这个名字实际上是源于PassWordtheVN，他是这个游戏的主角。"
     "事实上，这段提问代码也源自于PW。"
     "我很喜欢PW这个游戏，希望大家都能去玩。"
